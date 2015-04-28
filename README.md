@@ -8,19 +8,20 @@ The two key objectives were to (1) provide a flexible and extensible library of 
 
 Collection methods
 
-tweets by keywords
-tweets by geographic location
-friends and followers per user
-account history per user
-gdelt news for the same time periods as the twitter collections
+- tweets by keywords
+- tweets by geographic location
+- friends and followers per user
+- account history per user
+- gdelt news for the same time periods as the twitter collections
+
 Other methods:
 
-Identification of top languages and countries based on keywords
-Top terms and keyword frequencies and top re-posts
-Clustering and ranking of most similar posts
-Entity extraction by keywords (users, mentions, URLs)
-Identification of top users and bots
-Correlation of posts and news
-Visualizing tweets spatially and temporally
-Visualizing networks of users (friends and followers)
-Visualizing networks of actors and events (gdelt)
+- Identification of top languages and countries based on keywords
+- Top terms and keyword frequencies and top re-posts
+- Clustering and ranking of most similar posts
+- Entity extraction by keywords (users, mentions, URLs)
+- Identification of top users and bots
+- Correlation of posts and news
+- Visualizing tweets spatially and temporally
+- Visualizing networks of users (friends and followers)
+- Visualizing networks of actors and events (gdelt)

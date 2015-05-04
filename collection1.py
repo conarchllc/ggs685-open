@@ -216,24 +216,32 @@ app_auth = "C:/dev/twitter/auth/app_auth.json"
 '''
 
 ISIS Supporter Terms:
-الدولة_الإسلامية (Islamic State)
-المناصرون (The Supporters)
-أنصار (Supporters)
+Ø§Ù„Ø¯ÙˆÙ„Ø©_Ø§Ù„Ø¥Ø³Ù„Ø§Ù…ÙŠØ© (Islamic State)
+Ø§Ù„Ù…Ù†Ø§ØµØ±ÙˆÙ† (The Supporters)
+Ø£Ù†ØµØ§Ø± (Supporters)
 
 
 Non-support ISIS
 
-داعشي (Belongs or thinks like DAESH)
-الارهابيه (Terrorist)
+Ø¯Ø§Ø¹Ø´ÙŠ (Belongs or thinks like DAESH)
+Ø§Ù„Ø§Ø±Ù‡Ø§Ø¨ÙŠÙ‡ (Terrorist)
 
 '''
-track_terms = 'الدولة_الإسلامية', 'المناصرون', 'أنصار', 'داعشي', 'الارهابيه'
+
+#track_terms = 'Ø§Ù„Ø¯ÙˆÙ„Ø©_Ø§Ù„Ø¥Ø³Ù„Ø§Ù…ÙŠØ©', 'Ø§Ù„Ù…Ù†Ø§ØµØ±ÙˆÙ†', 'Ø£Ù†ØµØ§Ø±', 'Ø¯Ø§Ø¹Ø´ÙŠ', 'Ø§Ù„Ø§Ø±Ù‡Ø§Ø¨ÙŠÙ‡'
+
+
+#track_terms = ['New York Rangers', 'NY Rangers', 'Vigneault', \
+#              'The Broadway Blueshirts', "Tex's Rangers", \
+#              'Washington Capitals', 'Capitals', 'Trotz']
+
+track_terms = '#texasattack'
 
 # file to store json of all tweets matching terms (filter)
-outfile = "C:/dev/twitter/output/isis_ar_20150328.json"
+outfile = "C:/out/twitter/texasattack.json"
 
 # total number of tweets to collect before shutting off stream
-num_tweets = 10000
+num_tweets = 500
 
 # duration to collect tweets
 xduration = 0  # 10800s (3h); 21600s (6h)

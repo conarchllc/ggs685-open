@@ -72,8 +72,25 @@ Test
 '''
 screen_names:
 
+
+@YouKuffsHateMe
+@Victory4ALLah_
+@ssskafisti1
+@khadijabx3
+@jihadiA32 
+@backpackRevived
+@Bintmuhammad_ 
+
+@YouKuffsHateMe
+@Victory4ALLah_
+@ssskafisti1
+@khadijabx3
+@backpackRevived 
+
 '''
 
-screen_name = 'bksandberg'
+
+#screen_name = 'atawaakul'
+screen_name = 'backpackRevived'
 get_status_and_coords(screen_name)
 

@@ -20,6 +20,32 @@ Compute top countries for all tweets
 
 """
 
+'''
+Set Collection Name and Data Path to Twitter JSON Collection
+
+Also set the keywords that will be added as tags to the DataFrame targeting
+posts with these keywords -- Links (URLs) will be extracted from the 
+relevant tweets
+
+'''
+
+#tweets_data_path = 'C:/dev/twitter/output/isis_mosul_20150131.json'
+#tweets_data_path = 'C:/dev/twitter/output/isis_kobani_20150130.json'
+#tweets_data_path = 'C:/dev/twitter/output/syria_20150207.json'
+#tweets_data_path = 'C:/dev/twitter/output/syria_20150207.json'
+
+#tweets_data_path = 'C:/dev/twitter/output/isis2_20150220.json'
+#tweets_data_path = 'C:/dev/twitter/output/isis1_20150124.json'
+
+collection_name = 'texasattack'
+
+tweets_data_path = 'C:/out/twitter/'+collection_name+'.json'
+
+keywords = ['sharia', 'mohammad', 'murder', 'muslim']
+
+
+
+
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -45,15 +71,6 @@ def extract_link(text):
     
     
     
-#tweets_data_path = 'C:/dev/twitter/output/isis_mosul_20150131.json'
-#tweets_data_path = 'C:/dev/twitter/output/isis_kobani_20150130.json'
-#tweets_data_path = 'C:/dev/twitter/output/syria_20150207.json'
-#tweets_data_path = 'C:/dev/twitter/output/syria_20150207.json'
-
-#tweets_data_path = 'C:/dev/twitter/output/isis2_20150220.json'
-#tweets_data_path = 'C:/dev/twitter/output/isis1_20150124.json'
-tweets_data_path = 'C:/dev/twitter/output/isis_ar_20150323.json'
-
 
 tweets_data = []
 tweets_file = open(tweets_data_path, "r")
@@ -86,14 +103,18 @@ ax.set_title('Top 5 languages', fontsize=15, fontweight='bold')
 tweets_by_lang[:5].plot(ax=ax, kind='bar', color='blue')
 
 tweets_by_country = tweets['country'].value_counts()
+print 'tweets_by_country ', tweets_by_country
 
-fig, ax = plt.subplots()
-ax.tick_params(axis='x', labelsize=15)
-ax.tick_params(axis='y', labelsize=10)
-ax.set_xlabel('Countries', fontsize=15)
-ax.set_ylabel('Posts' , fontsize=15)
-ax.set_title('Top 5 countries', fontsize=15, fontweight='bold')
-tweets_by_country[:5].plot(ax=ax, kind='bar', color='blue')
+if len(tweets_by_country) > 0:
+    fig, ax = plt.subplots()
+    ax.tick_params(axis='x', labelsize=15)
+    ax.tick_params(axis='y', labelsize=10)
+    ax.set_xlabel('Countries', fontsize=15)
+    ax.set_ylabel('Posts' , fontsize=15)
+    ax.set_title('Top 5 countries', fontsize=15, fontweight='bold')
+    tweets_by_country[:5].plot(ax=ax, kind='bar', color='blue')
+
+
 
 # Compare popularity of ISIS terms and retrieve entities
 
@@ -103,8 +124,12 @@ tweets_by_country[:5].plot(ax=ax, kind='bar', color='blue')
 #keywords = ['Japanese', 'Peshmerga', 'hostage', 'Mosul', 'Obama', 'killed']
 #keywords = ['caliphate', 'Mujahid', 'sharia', 'fighter', 'jihad', 'behead', 'kill']
 #keywords = ['Aleppo', 'Damascus', 'Homs', 'Latakia', 'Hama', 'Raqqa']
-#keywords = ['ISIS', 'DAESH', 'ISIL', 'Islamic State' 'داعش','الإسلامية دولة' , 'الدولة الإسلامية في العراق وبلاد الشام']
-keywords = ['ISIS', 'DAESH', 'ISIL', 'Islamic State', 'IslamicState']
+#keywords = ['ISIS', 'DAESH', 'ISIL', 'Islamic State' 'Ø¯Ø§Ø¹Ø´','Ø§Ù„Ø¥Ø³Ù„Ø§Ù…ÙŠØ© Ø¯ÙˆÙ„Ø©' , 'Ø§Ù„Ø¯ÙˆÙ„Ø© Ø§Ù„Ø¥Ø³Ù„Ø§Ù…ÙŠØ© ÙÙŠ Ø§Ù„Ø¹Ø±Ø§Ù‚ ÙˆØ¨Ù„Ø§Ø¯ Ø§Ù„Ø´Ø§Ù…']
+#keywords = ['ISIS', 'DAESH', 'ISIL', 'Islamic State', 'IslamicState']
+
+#keywords = ['@', '#']
+
+
 
 # count posts for each keyword target
 
@@ -136,10 +161,13 @@ tweets['link'] = tweets['text'].apply(lambda tweet: extract_link(tweet))
 
 tweets_with_link = tweets[tweets['link'] != '']
 
-extracted_links = list(tweets_with_link[tweets_with_link['ISIS'] == True]['link'])
-print type(extracted_links)
-print extracted_links
-print '\n'
+extracted_links= []
+for i in range(len(keywords)):
+    extracted_links.append ( list(tweets_with_link[tweets_with_link[keywords[i]] == True]['link']))
+
+#print type(extracted_links)
+#print extracted_links
+#print '\n'
 
 for l in keywords:
     print l+':'
@@ -162,9 +190,17 @@ template = Template("""
 </table>
 """)
 
-links_to_html = template.render(bye=Counter(extracted_links))
+links_to_html = []
+for j in range(len(keywords)):
+    links_to_html.append ( template.render(bye=Counter(extracted_links[j])))
 
-f = open('c:/out/isis_ar_20150322.html', 'w')
-f.write(links_to_html.encode('utf8'))
+html_fn = 'c:/out/twitter/'+collection_name+'.html'
+
+f = open(html_fn, 'w')
+
+for k in range(len(keywords)):
+    f.write(keywords[k]+':')
+    f.write(links_to_html[k].encode('utf8'))
+
 f.close()
 

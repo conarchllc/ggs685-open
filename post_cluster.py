@@ -108,7 +108,7 @@ def frequent_data(data_path, type_of_list, top_n):
     
     # added Arabic stop words: in, to, on, before, of
     # added English stop words: rt, mar, 2015
-    add_words = ['rt', 'من', 'قبل', 'في']
+    add_words = ['rt', 'Ù…Ù†', 'Ù‚Ø¨Ù„', 'ÙÙŠ']
     
     stop_words = stop_words + add_words
 
@@ -399,28 +399,15 @@ Test
 Set Parameters
 '''
 
-syria_cities = 'C:/out/syria_cities_20150303.tsv'
-
-new_post = "ISIS recruiting foreign fighters"
-#new_post = "Anonymous is taking down ISIS"
 
 num_clusters = 1
 
-top_n = 20
+top_n = 100
 
+collection_name = 'texasattack'
 
-#Example files:
-#isis_ar_20150322.tsv
-#isis_ar_20150323.tsv
-#isis_ar_20150324.tsv
-#isis_ar_20150325a.tsv
-#isis_ar_20150325b.tsv
-#isis_ar_20150326a.tsv
-#isis_ar_20150326b.tsv
-#isis_ar_20150327.tsv
-#isis_ar_20150328a.tsv
-#isis_ar_20150328b.tsv
-#isis_ar_20150330.tsv
+parsed_data = 'c:/out/twitter/'+collection_name+'.tsv'
+
 
 
 '''
@@ -431,13 +418,10 @@ Methods
 '''
 filename, ['terms' or 'posts' or 'users'], and number of words/posts/users
 '''
-#frequent_data('C:/out/isis_ar_20150323.tsv', 'terms', top_n)
+
+frequent_data(parsed_data, 'users', top_n)
 
 #frequent_data('C:/out/isis_ar_20150324.tsv', 'terms', top_n)
-
-
-
-
 
 
 
@@ -449,21 +433,12 @@ two filenames and number of words
 #compare_top_words(ar_posts, top_n)
 
 
-isil1 = 'c:/out/isis_en_ar_20150322.tsv'
+#new_post = "ISIS recruiting foreign fighters"
+#new_post = "Anonymous is taking down ISIS"
 
-similar_posts(isil1, new_post, num_clusters, top_n)
+new_post = 'shujarabbani'
+
+#similar_posts(parsed_data, new_post, num_clusters, top_n)
 
 
 #best_post(new_post)
-
-
-
-
-
-
-
-
-
-
-
-

@@ -7,11 +7,25 @@ Created on Sun Feb 01 12:43:25 2015
 @author: Brian Sandberg
 """
 
+
+
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
 import re
 import unicodedata
+
+
+
+# Twitter Collections
+
+collection_name = 'texasattack'
+#tweets_data_path = 'C:/dev/twitter/output/isis1_20150124.json'
+#tweets_data_path = 'C:/dev/twitter/output/aleppo_20150228.json'
+
+tweets_data_path = 'C:/out/twitter/'+collection_name+'.json'
+
+
 
 
 def word_in_text(word, text):
@@ -31,13 +45,6 @@ def extract_link(text):
         return match.group()
     return ''
     
-
-# Twitter Collections
-    
-#tweets_data_path = 'C:/dev/twitter/output/isis1_20150124.json'
-#tweets_data_path = 'C:/dev/twitter/output/aleppo_20150228.json'
-
-tweets_data_path = 'C:/dev/twitter/output/isis_ar_20150330.json'
 
 
 
@@ -152,8 +159,9 @@ tweets['placename'] = map(lambda tweet: tweet['place']['name'] if tweet['place']
 #tweets['description'] = tweets['description'].str.replace('\t', ' ')
 
 
-# Outut Tweets to CSV
-tweets.to_csv('c:/out/isis_ar_20150330.tsv', mode='w', sep='\t', encoding='utf-8')
+# Outut Tweets to CSV/TSV
+out_fn = 'c:/out/twitter/'+collection_name+'.tsv'
+tweets.to_csv(out_fn, mode='w', sep='\t', encoding='utf-8')
 #tweets_text.to_csv('c:/gmu/ggs685/output/tweets_text2.tsv', mode='w', sep='\t', encoding='utf-8')
 #tweets_descr.to_csv('c:/gmu/ggs685/output/tweets_descr2.tsv', mode='w', sep='\t', encoding='utf-8')
 

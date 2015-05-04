@@ -204,15 +204,31 @@ def get_friends_or_followers(graph_type, users, n=20):
 Set Parameters
 '''
 
-users = ['bksandberg']
-screen_name = 'bksandberg'
+users = ['khadijabx3']
+screen_name = 'Victory4ALLah_'
 
+'''
+@YouKuffsHateMe
+@Victory4ALLah_
+@ssskafisti1
+
+rate limited, start here:
+@khadijabx3
+@jihadiA32 
+@backpackRevived
+@Bintmuhammad_ 
+@YouKuffsHateMe
+@Victory4ALLah_
+@ssskafisti1
+@khadijabx3
+@backpackRevived 
+'''
 
 '''
 Test Methods
 '''
 
-#get_friends_or_followers('friends', users, n=40)
+get_friends_or_followers('friends', users, n=100)
 
 #get_user_id_str(users)
 
